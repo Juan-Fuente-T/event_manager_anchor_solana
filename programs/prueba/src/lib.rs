@@ -2,6 +2,7 @@ use { anchor_lang::prelude::*, crate::instructions::*} ;
 
 mod collections;
 mod instructions;
+mod utils;
 
 declare_id!("Cu1WSoc3P34R1KjKzLpF46V1uF5b8eWyqrAvEKU6mqWd");
 
@@ -38,5 +39,17 @@ pub mod event_manager {
         amount: u64,
     ) -> Result<()> {
         instructions::withdraw_funds::handle(ctx, amount)
+    }
+
+    pub fn close_event(
+        ctx: Context<CloseEvent>
+    ) -> Result <()>{
+        instructions::close_event::handle(ctx)
+    }
+
+    pub fn withdraw_earnings(
+        ctx: Context<WithdrawEarnings>
+    ) -> Result<()> {
+        instructions::withdraw_earnings::handle(ctx)
     }
 }
